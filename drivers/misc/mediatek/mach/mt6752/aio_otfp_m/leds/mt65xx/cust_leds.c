@@ -108,8 +108,8 @@ unsigned int brightness_mapping(unsigned int level)
  */
 static struct cust_mt65xx_led cust_led_list[MT65XX_LED_TYPE_TOTAL] = {
 //lenovo wuwl10 20150515 modify for led begin
-	{"test-led",             MT65XX_LED_MODE_PMIC, MT65XX_LED_PMIC_NLED_ISINK1,{0}},
-	{"greenled",             MT65XX_LED_MODE_PMIC, MT65XX_LED_PMIC_NLED_ISINK1,{0}},
+	{"red",               MT65XX_LED_MODE_PMIC, MT65XX_LED_PMIC_NLED_ISINK0,{0}},
+	{"green",             MT65XX_LED_MODE_PMIC, MT65XX_LED_PMIC_NLED_ISINK1,{0}},
 //lenovo wuwl10 20150515 modify for led  end
 	{"blue",              MT65XX_LED_MODE_NONE, -1,{0}},
 	{"jogball-backlight", MT65XX_LED_MODE_NONE, -1,{0}},
