@@ -1049,11 +1049,6 @@ config TOUCHSCREEN_S3528
 	help
 	  This enables support for Synaptics S3528 over I2C based touchscreens.
 
-config TOUCHSCREEN_SWEEP2WAKE
-	tristate "Sweep2Wake for touchscreens"
-	select TOUCHSCREEN_PREVENT_SLEEP
-	default n
-
 config TOUCHSCREEN_DOUBLETAP2WAKE
 	tristate "DoubleTap2Wake for touchscreens"
 	select TOUCHSCREEN_PREVENT_SLEEP
