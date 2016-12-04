@@ -5,7 +5,7 @@
 <h2>Special thanks: </h2>
 	Danielhk for correcting the tfa and the alsps :) 
 <h2> Features :</h2>
-        Double Tap to Wake
+    Double Tap to Wake
 	Wheatley and Alucard Governors
 	Tuned Interactive governor
 	Fast Charge
