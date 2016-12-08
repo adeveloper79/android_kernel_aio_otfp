@@ -10,3 +10,4 @@
 	Tuned Interactive governor
 	Fast Charge
 	Better touch Response
+	Zen Scheduler
