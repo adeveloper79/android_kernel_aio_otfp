@@ -342,6 +342,9 @@ config CPU_FREQ_GOV_WHEATLEY
 
 config CPU_FREQ_GOV_PEGASUSQ
 	tristate "'pegasusq' cpufreq policy governor"
+
+config CPU_FREQ_GOV_RENICE
+	tristate "'renice' cpufreq policy governor"
 	
 config GENERIC_CPUFREQ_CPU0
 	tristate "Generic CPU0 cpufreq driver"
