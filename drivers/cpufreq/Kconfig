@@ -159,6 +159,12 @@ config CPU_FREQ_DEFAULT_GOV_ALUCARD
 	select CPU_FREQ_GOV_ALUCARD
 	help
 
+config CPU_FREQ_DEFAULT_GOV_RENICE
+        bool "renice"
+        select CPU_FREQ_GOV_RENICE
+        help
+          Use the CPUFreq governor 'renice' as default
+	  
 config CPU_FREQ_DEFAULT_GOV_WHEATLEY
 	bool "wheatley"
 	select CPU_FREQ_GOV_WHEATLEY
