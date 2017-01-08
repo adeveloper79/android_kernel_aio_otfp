@@ -11,3 +11,4 @@
 	Fast Charge
 	Better touch Response
 	Zen Scheduler
+        *****RENICE GOVERNOR ****
