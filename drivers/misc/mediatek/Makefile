@@ -220,6 +220,10 @@ obj-$(CONFIG_MTK_MTD_NAND)	+= nand/
 obj-$(CONFIG_MTK_GPT_SCHEME_SUPPORT)	+= partition/
 obj-$(CONFIG_MTK_SOUND) += smartpa/
 
+#lenovo-sw.lily8.2015-10-13.add begin
+obj-$(CONFIG_MTK_NXP_TFA9897) += nxp/
+#lenovo-sw.lily8.2015-10-13.add end
+
 obj-$(CONFIG_MTK_DUM_CHAR)	+= dum-char/
 
 #charge pump
