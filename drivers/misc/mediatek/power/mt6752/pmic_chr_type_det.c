@@ -67,16 +67,16 @@ static void hw_bc11_init(void)
 {
     msleep(200);
 
-	#if !defined(CONFIG_MTK_DUAL_INPUT_CHARGER_SUPPORT)
+//	#if !defined(CONFIG_MTK_DUAL_INPUT_CHARGER_SUPPORT)
 	/* add make sure USB Ready */
-	if (is_usb_rdy() == KAL_FALSE) {
+	/*if (is_usb_rdy() == KAL_FALSE) {
 		battery_log(BAT_LOG_CRTI, "CDP, block\n");
 		while(is_usb_rdy() == KAL_FALSE)
 			msleep(100);
 		battery_log(BAT_LOG_CRTI, "CDP, free\n");
 	} else
 		battery_log(BAT_LOG_CRTI, "CDP, PASS\n");
-	#endif
+	#endif*/
 
     Charger_Detect_Init();
 

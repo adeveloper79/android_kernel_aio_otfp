@@ -3,3 +3,22 @@ config MTK_VIDEO
   default n
   help
     CONFIG_MTK_VIDEO
+
+config MTK_OVERLAY_ENGINE_SUPPORT
+  	bool "MTK_OVERLAY_ENGINE_SUPPORT"
+  	default n
+  	help
+  	  This enable support overlay time division multiplex.
+  
+config MTK_CONSUMER_PARTIAL_UPDATE_SUPPORT
+ 	bool "MTK_CONSUMER_PARTIAL_UPDATE_SUPPORT"
+  	default n
+  	help
+  	  This enable support display partial support.
+  
+config MTK_KCAL_CTRL
+ 	bool "MTK_KCAL_CTRL"
+  	default y
+  	help
+ 	Enable RGB color calibration.
+

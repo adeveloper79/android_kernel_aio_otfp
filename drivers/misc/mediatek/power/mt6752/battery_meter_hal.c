@@ -13,7 +13,7 @@
 
 /* lenovo-sw zhangrc2 support max17058 */
 #if defined(SOC_BY_3RD_FG)
-#include <max17058_battery.h>
+#include "./max17058_battery.h"
 extern void max17048_set_temperature(int tmp);
 extern  unsigned char max17058_get_capacity(void);
 #endif

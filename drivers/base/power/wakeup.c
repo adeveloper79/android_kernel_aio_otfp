@@ -29,7 +29,6 @@ static bool enable_wlan_wake_ws = true;
 module_param(enable_wlan_wake_ws, bool, 0644);
 static bool enable_smb135x_wake_ws = true;
 module_param(enable_smb135x_wake_ws, bool, 0644);
-
 #include "power.h"
 //#ifndef CONFIG_ARM64
 #if 1
@@ -417,6 +416,7 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 
 	if (!enable_wlan_wake_ws && !strcmp(ws->name, "wlan_wake"))
 		return;
+
 	/*
 	 * active wakeup source should bring the system
 	 * out of PM_SUSPEND_FREEZE state

@@ -2,7 +2,7 @@
 #define AUDDRV_BTCVSD_H
 
 #include <mach/mt_typedefs.h>
-#include "../../AudioBTCVSDDef.h"
+#include "./../../AudioBTCVSDDef.h"
 
 #undef DEBUG_AUDDRV
 #ifdef DEBUG_AUDDRV

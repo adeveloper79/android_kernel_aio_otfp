@@ -60,6 +60,12 @@
 #include "mt_soc_digital_type.h"
 #include "mt_soc_pcm_common.h"
 
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+extern bool in_phone_call;
+#include <linux/input/doubletap2wake.h>
+#endif
+
+
 /*
  *    function implementation
  */
@@ -242,6 +248,14 @@ static int mtk_voice_md2_close(struct snd_pcm_substream *substream)
 
     voice_md2_Status = false;
 
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+    in_phone_call = false;
+#if DT2W_DEBUG
+   pr_info("%s: Phone Call Ended, set the flag to %s\n",
+       __func__, (in_phone_call ? "true" : "false"));
+#endif
+#endif
+
     return 0;
 }
 
@@ -315,6 +329,14 @@ static int mtk_voice1_ext_prepare(struct snd_pcm_substream *substream)
     SetModemPcmEnable(MODEM_2, true);
 
     voice_md2_Status = true;
+
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+    in_phone_call = false;
+#if DT2W_DEBUG
+   pr_info("%s: Phone Call Ended, set the flag to %s\n",
+       __func__, (in_phone_call ? "true" : "false"));
+#endif
+#endif
 
     return 0;
 }

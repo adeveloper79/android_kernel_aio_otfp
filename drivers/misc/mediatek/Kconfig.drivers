@@ -1273,6 +1273,14 @@ config LENOVO_RTC_SAVE_TIMEZONE_SUPPORT
 	  Say Y to include support for rtc save timezone.
 #end, lenovo-sw mahj2 add for rtc save timezone at 20141204
 
+#lenovo-sw.lily8.2015-10-13.add begin
+config MTK_NXP_TFA9897
+    bool "MTK_NXP_TFA9897"
+	default n
+	help
+        If you say Y, enable MTK_NXP_TFA9897 driver.
+#lenovo-sw.lily8.2015-10-13.add end
+
 # lenovo-sw wangyq13 add for super backlight 20150320 begin
 config LENOVO_CUSTOM_LCM_FEATURE
        bool "LENOVO_CUSTOM_LCM_FEATURE"

@@ -21,7 +21,7 @@
 #include <mach/mt_reg_base.h>
 #include <mach/md32_helper.h>
 #include <mach/md32_ipi.h>
-#include "md32_irq.h"
+#include "./md32_irq.h"
 
 
 struct ipi_desc ipi_desc[MD32_NR_IPI];

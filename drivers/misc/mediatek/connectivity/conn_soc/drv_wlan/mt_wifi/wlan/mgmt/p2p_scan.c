@@ -641,6 +641,12 @@ scanP2pProcessBeaconAndProbeResp(IN P_ADAPTER_T prAdapter,
 				if (fgIsSkipThisBeacon || prBssDesc->eBand == BAND_2G4)
 					break;
 			}
+ 
+			if (prBssDesc->eBand == BAND_5G && !prAdapter->fgEnable5GBand) {
+				DBGLOG(P2P, INFO, "Error: %s[%d] should not be here!\n",
+					prBssDesc->aucSSID, prBssDesc->ucChannelNum);
+				break;
+			}
 
 			rChannelInfo.ucChannelNum = prBssDesc->ucChannelNum;
 			rChannelInfo.eBand = prBssDesc->eBand;

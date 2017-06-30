@@ -16,6 +16,8 @@ obj-$(CONFIG_MTK_FB) +=			mtkfb_console.o        \
 					mtk_ovl.o              \
 					fbconfig_kdebug.o
 
+obj-$(CONFIG_MTK_KCAL_CTRL) += mtk_kcal_ctrl.o
+
 ccflags-y += -I$(srctree)/drivers/staging/android/ion \
 	     -I$(srctree)/drivers/misc/mediatel/commom/include/ \
 	     -I$(srctree)/drivers/misc/mediatek/ext_disp/ \

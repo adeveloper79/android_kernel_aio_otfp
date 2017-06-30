@@ -10,6 +10,14 @@
 #include <linux/sensors_io.h>
 #endif
 
+#ifdef CONFIG_POCKETMOD
+#include <linux/pocket_mod.h>
+#endif
+
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+#include <linux/input/doubletap2wake.h>
+#endif
+
 #if GTP_SUPPORT_I2C_DMA
 #include <linux/dma-mapping.h>
 #endif
@@ -3372,9 +3380,21 @@ static int touch_event_handler(void *unused)
 		{
 			input_x =touch_key_point_maping_array[i].point_x;
 			input_y = touch_key_point_maping_array[i].point_y;
-			printk("button =%d %d",input_x,input_y);
-				   
-			tpd_down( input_x, input_y, 0, 0);
+#ifdef  CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+ 			// fix for lower button wakeup
+ 			if(dt2w_scr_suspended == false)
+ 				{
+ 				tpd_down( input_x, input_y, 0, 0);
+ 				}
+ 				// avoid button touches being recognized as digitizer presses
+				else if(touch_key_point_maping_array[i].point_y<1920) {
+					tpd_down( input_x, input_y, 0, 0);
+				}
+			#else
+				tpd_down( input_x, input_y, 0, 0);
+				printk("button =%d %d",input_x,input_y);
+#endif
+
 		}
 #else
       input_report_key(tpd->dev, touch_key_array[i], key_value & (0x01 << i));

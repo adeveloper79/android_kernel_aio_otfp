@@ -529,10 +529,13 @@ static void eros_suspend(struct early_suspend *h) {
 	 */
 #if defined(CONFIG_TOUCHSCREEN_SWEEP2WAKE)
 	prevent_sleep = (s2w_switch > 0) && (s2w_s2sonly == 0);
+	prevent_sleep = (prevent_sleep && !in_phone_call);
 	s2w_scr_suspended = true;
 #endif
 #if defined(CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE)
-	prevent_sleep = prevent_sleep || (dt2w_switch > 0);
+	//prevent_sleep = prevent_sleep || (dt2w_switch > 0);
+	prevent_sleep = (dt2w_switch > 0);
+	prevent_sleep = (prevent_sleep && !in_phone_call);
 	dt2w_scr_suspended = true;
 #endif
 

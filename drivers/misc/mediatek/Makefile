@@ -131,7 +131,7 @@ endif
 
 obj-$(CONFIG_MTK_VOW_SUPPORT)	+= vow/
 
-subdir-ccflags-y += -I$(srctree)/drivers/misc/mediatek/mach/$(MTK_PLATFORM)/include
+subdir-ccflags-y += -I$(srctree)/drivers/misc/mediatek/mach/mt6752/include
 obj-$(CONFIG_MTK_COMBO)			+= connectivity/
 obj-$(CONFIG_MTK_CONN_MD)	+= conn_md/
 
@@ -162,7 +162,7 @@ obj-$(CONFIG_MTK_LENS)   += lens/
 obj-$(CONFIG_MTK_IMGSENSOR)	+= imgsensor/src/
 
 
-ifeq ($(wildcard $(srctree)/drivers/misc/mediatek/mach/$(MTK_PLATFORM)/$(ARCH_MTK_PROJECT)/cam_cal),)
+ifeq ($(wildcard $(srctree)/drivers/misc/mediatek/mach/mt6752/$(ARCH_MTK_PROJECT)/cam_cal),)
 obj-$(CONFIG_MTK_CAM_CAL)	+= cam_cal/src/
 endif
 
@@ -214,6 +214,7 @@ obj-y	+= almk/
 obj-$(CONFIG_MTK_JPEG)	+= jpeg/
 
 obj-$(CONFIG_MTK_LEDS)	+= leds/
+obj-$(CONFIG_MTK_SECURITY_SW_SUPPORT) +=masp/
 obj-$(CONFIG_MTK_MMC)	+= mmc-host/
 obj-$(CONFIG_MTK_MMC)	+= pmt/
 obj-$(CONFIG_MTK_MTD_NAND)	+= nand/
@@ -225,6 +226,8 @@ obj-$(CONFIG_MTK_NXP_TFA9897) += nxp/
 #lenovo-sw.lily8.2015-10-13.add end
 
 obj-$(CONFIG_MTK_DUM_CHAR)	+= dum-char/
+
+obj-$(CONFIG_MTK_DYNAMIC_BOOST) += dynamic_boost/
 
 #charge pump
 ifeq ($(CONFIG_CUSTOM_KERNEL_CHARGEPUMP),y)
@@ -288,7 +291,7 @@ endif       # end of CONFIG_ARCH_MT6580
 
 
 ifneq (,$(filter $(CONFIG_MTK_PLATFORM), "mt6752"))
-obj-y	+= ddr/$(MTK_PLATFORM)/
+obj-y	+= ddr/mt6752/
 endif
 
 obj-$(CONFIG_TRUSTONIC_TEE_SUPPORT) += gcpu/
@@ -305,4 +308,4 @@ obj-$(CONFIG_MTK_MULTIBRIDGE_SUPPORT) += multibridge/
 #widevine drm
 #Classic DRM
 $(info "CONFIG_TRUSTONIC_TEE_SUPPORT = $(CONFIG_TRUSTONIC_TEE_SUPPORT)")
-obj-$(CONFIG_TRUSTONIC_TEE_SUPPORT) += secwidevine/
+#obj-$(CONFIG_TRUSTONIC_TEE_SUPPORT) += secwidevine/

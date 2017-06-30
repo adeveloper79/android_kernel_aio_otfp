@@ -8,13 +8,6 @@ menuconfig POWER_SUPPLY
 
 if POWER_SUPPLY
 
-config FORCE_FAST_CHARGE
- 	bool "Increase input current limit to 900mA when charging via USB"
- 	default y
- 	help
- 	  A simple sysfs interface to increase input current limit to
- 	  900mA when charging via USB.
-
 config POWER_SUPPLY_DEBUG
 	bool "Power supply debug"
 	help
@@ -368,6 +361,14 @@ config BATTERY_GOLDFISH
 	help
 	  Say Y to enable support for the battery and AC power in the
 	  Goldfish emulator.
+
+config FORCE_FAST_CHARGE
+ 	bool "Increase input current limit to 900+mA when charging via USB"
+ 	default y
+ 	help
+ 	  A simple sysfs interface to increase input current limit to
+ 	  900+mA when charging via USB.
+
 
 source "drivers/power/reset/Kconfig"
 

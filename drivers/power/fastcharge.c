@@ -3,7 +3,7 @@
  * USB Fastcharge
  *
  *   0 - disabled (default)
- *   1 - increase charge current limit to 900mA
+ *   1 - increase charge current limit to 900+mA
  *
 */
 
@@ -62,4 +62,5 @@ int force_fast_charge_init(void)
 
 
 module_init(force_fast_charge_init);
+
 

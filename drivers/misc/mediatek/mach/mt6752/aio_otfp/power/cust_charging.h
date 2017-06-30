@@ -105,8 +105,13 @@
 /*lenovo-sw weiweij added for charging terminate as 0.1c*/
 #define LENOVO_CHARGING_TERM
 #ifdef LENOVO_CHARGING_TERM
+#ifdef CONFIG_MTK_BQ24157_SUPPORT
+#define LENOVO_CHARGING_TERM_CUR_STAGE_1	3	//250ma
+#define LENOVO_CHARGING_TERM_CUR_STAGE_2	2	//200ma
+#else
 #define LENOVO_CHARGING_TERM_CUR_STAGE_1	7	//275ma
 #define LENOVO_CHARGING_TERM_CUR_STAGE_2	2	//150ma
+#endif
 #endif
 /*lenovo-sw weiweij added for charging terminate as 0.1c end*/
 /* lenovo-sw zhangrc2 use pmic to control charging led 2014-12-08 */

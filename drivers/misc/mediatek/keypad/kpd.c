@@ -878,9 +878,9 @@ static int kpd_pdrv_probe(struct platform_device *pdev)
 #ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
 	sweep2wake_setdev(kpd_input_dev);
 #endif
-#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+/*#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
 	doubletap2wake_setdev(kpd_input_dev);
-#endif
+#endif*/
 #endif
 
 #ifdef KPD_KEY_MAP

@@ -698,8 +698,8 @@ void select_charging_curret(void)
 			{
 #ifdef CONFIG_FORCE_FAST_CHARGE
 				if (force_fast_charge) {
-					g_temp_input_CC_value = CHARGE_CURRENT_1000_00_MA;
-					g_temp_CC_value = CHARGE_CURRENT_1000_00_MA;
+					g_temp_input_CC_value = CHARGE_CURRENT_2000_00_MA;
+					g_temp_CC_value = CHARGE_CURRENT_2000_00_MA;
 				} else {
 #endif
 					g_temp_input_CC_value = batt_cust_data.usb_charger_current;
@@ -707,6 +707,7 @@ void select_charging_curret(void)
 #ifdef CONFIG_FORCE_FAST_CHARGE
 				}
 #endif
+
 			}
 #endif
 		} else if (BMT_status.charger_type == NONSTANDARD_CHARGER) {

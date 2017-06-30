@@ -10,6 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+
  *
  */
 
@@ -327,7 +328,6 @@ static struct i2c_driver epl2182_i2c_driver =
 
 static struct epl2182_priv *epl2182_obj = NULL;
 static epl_raw_data	gRawData;
-
 static int alsps_init_flag =-1; // 0<==>OK -1 <==> fail
 
 static struct alsps_init_info epl2182_init_info = {
@@ -604,6 +604,7 @@ static int elan_epl2182_psensor_enable(struct epl2182_priv *epl_data, int enable
 				{
 					ps_report_interrupt_data(gRawData.ps_state);
 					APS_LOG("ps_report_interrupt_data gRawData.ps_state:%d, gRawData.ps_raw=%d \n ", gRawData.ps_state, gRawData.ps_raw);
+					
 				}
 				ps_resume_flag = false;
 			}
@@ -2881,6 +2882,49 @@ static int __init epl2182_init(void)
 	alsps_driver_add(&epl2182_init_info);
 	return 0;
 }
+
+
+ /*Modify for Pocket Mod Implemention 	2017-06-08 start
+   by: GSandeep96 (https://github.com/GSandeep96)*/
+
+#ifdef CONFIG_POCKETMOD
+int epl2182_pocket_detection_check(void)
+{
+	int ps_val;
+	int als_val;
+
+	struct epl2182_priv *obj = epl2182_obj;
+	bool enable_ps = test_bit(CMC_BIT_PS, &obj->enable);
+	bool enable_als = test_bit(CMC_BIT_ALS, &obj->enable);
+	if(enable_ps == 0)
+	{
+		set_bit(CMC_BIT_PS, &obj->enable);
+		queue_delayed_work(obj->epl_wq, &polling_work,msecs_to_jiffies(5));
+	}
+	msleep(50);
+	ps_val = gRawData.ps_state;
+	APS_LOG("ioctl ps state value = %d \n", ps_val);
+
+	if(enable_als == 0)
+	{
+		set_bit(CMC_BIT_ALS, &obj->enable);
+		queue_delayed_work(obj->epl_wq, &polling_work,msecs_to_jiffies(5));
+	}
+	als_val = gRawData.als_lux;
+	APS_LOG("ioctl get als data = %d\n", als_val);
+
+	APS_DBG("[epl2182] %s als_val = %d, ps_val = %d\n", __func__, als_val, ps_val);
+
+	clear_bit(CMC_BIT_PS, &obj->enable);
+	clear_bit(CMC_BIT_ALS, &obj->enable);
+	return (ps_val);
+
+}
+#endif
+
+ /*Modify for Pocket Mod Implemention 	2017-06-08 end
+   by: GSandeep96 (https://github.com/GSandeep96)*/
+
 /*----------------------------------------------------------------------------*/
 static void __exit epl2182_exit(void)
 {
@@ -2893,3 +2937,4 @@ module_exit(epl2182_exit);
 MODULE_AUTHOR("yucong.xiong@mediatek.com");
 MODULE_DESCRIPTION("EPL2182 ALSPS driver");
 MODULE_LICENSE("GPL");
+

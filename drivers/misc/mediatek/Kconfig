@@ -229,6 +229,26 @@ config MTK_ENABLE_SPM_CHANGE_PMIC_MODE
 	bool "Mediatek spm pmic mode"
 	default n
 
+config MTK_CPU_OC
+	bool "Mediatek CPU overclock"
+	default n
+
+config MTK_GPU_OC
+	bool "Mediatek GPU overclock"
+	default n
+
+config MTK_GPU_FREQT
+	int "Value of GPU_DVFS_FREQT"
+	depends on MTK_GPU_OC
+	default 819000
+	---help---
+	  Calculated this value from PLL settings
+
+config MTK_DVFS_CONTROL
+	bool "CPU DVFS interface"
+	depends on MTK_CPU_OC
+	default n
+
 source "drivers/misc/mediatek/Kconfig.kernel"
 source "drivers/misc/mediatek/Kconfig.drivers"
 source "drivers/misc/mediatek/smartpa/Kconfig"
@@ -309,6 +329,7 @@ source "drivers/misc/mediatek/pedometer/Kconfig"
 source "drivers/misc/mediatek/pick_up_sensor/Kconfig"
 source "drivers/misc/mediatek/rotationvector/Kconfig"
 source "drivers/misc/mediatek/sensorHub/Kconfig"
+source "drivers/misc/mediatek/dynamic_boost/Kconfig"
 source "drivers/misc/mediatek/shake_sensor/Kconfig"
 source "drivers/misc/mediatek/step_counter/Kconfig"
 source "drivers/misc/mediatek/tilt_detector_sensor/Kconfig"

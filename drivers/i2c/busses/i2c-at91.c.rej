@@ -1,0 +1,36 @@
+--- drivers/i2c/busses/i2c-at91.c
++++ drivers/i2c/busses/i2c-at91.c
+@@ -377,6 +383,24 @@ static irqreturn_t atmel_twi_interrupt(int irq, void *dev_id)
+ 
+ 	if (!irqstatus)
+ 		return IRQ_NONE;
++	/*
++	 * In reception, the behavior of the twi device (before sama5d2) is
++	 * weird. There is some magic about RXRDY flag! When a data has been
++	 * almost received, the reception of a new one is anticipated if there
++	 * is no stop command to send. That is the reason why ask for sending
++	 * the stop command not on the last data but on the second last one.
++	 *
++	 * Unfortunately, we could still have the RXRDY flag set even if the
++	 * transfer is done and we have read the last data. It might happen
++	 * when the i2c slave device sends too quickly data after receiving the
++	 * ack from the master. The data has been almost received before having
++	 * the order to send stop. In this case, sending the stop command could
++	 * cause a RXRDY interrupt with a TXCOMP one. It is better to manage
++	 * the RXRDY interrupt first in order to not keep garbage data in the
++	 * Receive Holding Register for the next transfer.
++	 */
++	if (irqstatus & AT91_TWI_RXRDY)
++		at91_twi_read_next_byte(dev);
+ 
+ 	/*
+ 	 * When a NACK condition is detected, the I2C controller sets the NACK,
+@@ -419,8 +443,6 @@ static irqreturn_t atmel_twi_interrupt(int irq, void *dev_id)
+ 	if (irqstatus & (AT91_TWI_TXCOMP | AT91_TWI_NACK)) {
+ 		at91_disable_twi_interrupts(dev);
+ 		complete(&dev->cmd_complete);
+-	} else if (irqstatus & AT91_TWI_RXRDY) {
+-		at91_twi_read_next_byte(dev);
+ 	} else if (irqstatus & AT91_TWI_TXRDY) {
+ 		at91_twi_write_next_byte(dev);
+ 	}

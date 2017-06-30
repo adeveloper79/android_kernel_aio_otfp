@@ -1287,3 +1287,4 @@ late_initcall(alsps_init);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("ALSPS device driver");
 MODULE_AUTHOR("Mediatek");
+
